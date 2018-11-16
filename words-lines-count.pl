@@ -12,6 +12,7 @@ my $word_sum = 0;
 
 for (@iter) {
     next if (-d "$_");
+    next unless ($_ =~ /\.(txt|md)/);
 
     my $line = `wc "$opt" "$_" | awk '{ print \$1}'`;
     my $word = `wc "$opt" "$_" | awk '{ print \$2}'`;
@@ -24,6 +25,7 @@ for (@iter) {
     print "$name =>\twords: $word\tlines: $line";
     $line_sum += $line;
     $word_sum += $word;
+    say '';
 }
 
 say "\n";
